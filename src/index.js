@@ -14,10 +14,10 @@ function insertText(str, dir, preprocessor = res => res, processFilename = false
   return str.replace(stringRegex, function (match, quote, url) {
     const includePath = path.join(dir, url);
     if (processFilename) {
-      return '`' + preprocessor(includePath) + '`';
+      return '"' + preprocessor(includePath) + '"';
     }
     const text = fs.readFileSync(includePath).toString();
-    return '`' + preprocessor(text, includePath) + '`';
+    return '"' + preprocessor(text, includePath) + '"';
   });
 }
 
